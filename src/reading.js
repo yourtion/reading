@@ -61,7 +61,7 @@ app.post('/close', (req, res) => {
   console.info('[KEYWORD]', keyword);
 
   axios.get(`https://api.github.com/search/issues?q=${ keyword }%20repo:${ REPO_OWNER }/${ REPO_NAME }`)
-    .then(data => {
+    .then(({ data }) => {
       console.info('[RESULT]', data);
       if (data.total_count > 0) {
         data.items.forEach(({ url, html_url }) =>
@@ -71,8 +71,6 @@ app.post('/close', (req, res) => {
           }).then(() => console.info(`[END] issue closed successful! ${ html_url }`)).catch(err => res.json('error', { error: err })));
         res.json({ message: 'Closed issue successful!' });
       } else {
-        console.info('[RESULT]', data);
-
         axios.post(`https://api.github.com/repos/${ REPO_OWNER }/${ REPO_NAME }/issues?access_token=${ GITHUB_ACCESS_TOKEN }`, {
           headers: { 'Content-Type': 'application/json' },
           data: { title },
