@@ -1,4 +1,3 @@
-require('es6-promise').polyfill();
 const axios = require('axios');
 const express = require('express');
 const webtask = require('webtask-tools');
@@ -12,7 +11,7 @@ const REPO_OWNER = 'yourtion';
 const REPO_NAME = 'reading';
 const REPO_ID = 105520376;
 
-app.get('/hello', (req, res) => {
+app.get('/test', (req, res) => {
   res.end('Hello Yourtion');
 });
 
