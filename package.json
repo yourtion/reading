@@ -4,6 +4,7 @@
   "description": "Yourtion reading list project",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint src --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +23,10 @@
     "es6-promise": "^4.1.1",
     "express": "^4.16.1",
     "webtask-tools": "^3.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0",
+    "eslint-config-guo": "^0.6.0",
+    "eslint-plugin-promise": "^3.5.0"
   }
 }
