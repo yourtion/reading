@@ -21,7 +21,7 @@ app.get('/test', (req, res) => {
 
 app.post('/reading', (req, res) => {
   const { GITHUB_ACCESS_TOKEN, ZENHUB_ACCESS_TOKEN, ZENHUB_ACCESS_TOKEN_V4 } = req.webtaskContext.secrets;
-  const { action, issue } = JSON.parse(req.body.payload);
+  const { action, issue } = req.body.payload;
   const { url, html_url, number } = issue;
 
   console.info(`[BEGIN] issue updated with action: ${ action }`);
@@ -46,7 +46,7 @@ app.post('/reading', (req, res) => {
     }).then(() => console.info(`[END] set release successful! ${ html_url }`)).catch((e) => console.error(`[END] Failed to set release! ${ html_url }`, e));
 
   }
-  
+
   res.json({ message: 'issue updated!' });
 });
 
