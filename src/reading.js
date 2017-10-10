@@ -22,6 +22,7 @@ app.get('/test', (req, res) => {
 app.post('/reading', (req, res) => {
   const { GITHUB_ACCESS_TOKEN, ZENHUB_ACCESS_TOKEN, ZENHUB_ACCESS_TOKEN_V4 } = req.webtaskContext.secrets;
   const { action, issue } = req.body.payload;
+  if(!issue) return res.json({ message: 'ok!' });
   const { url, html_url, number } = issue;
 
   console.info(`[BEGIN] issue updated with action: ${ action }`);
